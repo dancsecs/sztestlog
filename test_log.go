@@ -172,3 +172,18 @@ func CaptureStderrAndStdout(t *testing.T, ll szlog.LogLevel) *sztest.Chk {
 
 	return chk
 }
+
+// CaptureAll returns a new *sztest.Chk reference capturing log, stderr and
+// stdout setting the logging level to LevelAll in a single call.
+func CaptureAll(
+	t *testing.T,
+) *sztest.Chk {
+	t.Helper()
+
+	restoreFunc := setLogLevel(szlog.LevelAll)
+
+	chk := sztest.CaptureLogAndStderrAndStdout(t)
+	chk.PushPostReleaseFunc(restoreFunc)
+
+	return chk
+}

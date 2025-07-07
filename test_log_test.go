@@ -229,3 +229,25 @@ func TestSzTestLog_CaptureStderrAndStdout(t *testing.T) {
 	tstChk.Stdout()
 	tstChk.Stderr()
 }
+
+func TestSzTestLog_CaptureAll(t *testing.T) {
+	chk := sztest.CaptureNothing(t)
+	defer chk.Release()
+
+	szlog.Reset()
+
+	origLevel := szlog.SetLevel(szlog.LevelNone)
+	defer func() {
+		szlog.SetLevel(origLevel)
+	}()
+
+	tstChk := sztestlog.CaptureAll(t)
+	defer tstChk.Release()
+
+	chk.NotNil(tstChk)
+	chk.Int(int(szlog.Level()), int(szlog.LevelAll))
+
+	tstChk.Stdout()
+	tstChk.Log()
+	tstChk.Stderr()
+}
