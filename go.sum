@@ -1,4 +1,4 @@
-github.com/dancsecs/szlog v0.0.0-20240523124755-ee740f9b2896 h1:TVCAte1zZQ5YTTG56A/ferhqJBNptE49jQ0GKod6EJo=
-github.com/dancsecs/szlog v0.0.0-20240523124755-ee740f9b2896/go.mod h1:v2jqe60Pi1WRP6i1nUH/6+5QFoWKXOz2pQp2oIejSuw=
-github.com/dancsecs/sztest v0.0.0-20240523122652-8619cca9e89f h1:O3tZ8zmu10ojrdI9I7MotJBropgQwyLADweDZVmdKHU=
-github.com/dancsecs/sztest v0.0.0-20240523122652-8619cca9e89f/go.mod h1:kbuIqdeICPjQoRnA7ZSxlOYuk4qwLywBRfdDiHPm7Gw=
+github.com/dancsecs/szlog v0.0.1 h1:VB4fdaJG1MF1FiASqKx5XGrfZWw7expLiHd2LsaC7q8=
+github.com/dancsecs/szlog v0.0.1/go.mod h1:WClbx8Uv9hPib4gWyIQIbtcq/L2llaT/DQGUD3kyANc=
+github.com/dancsecs/sztest v0.1.2 h1:aFk4zUFxzJxX5k54ZCBXvslXg7lNtm5paeVOk/FQitA=
+github.com/dancsecs/sztest v0.1.2/go.mod h1:kbuIqdeICPjQoRnA7ZSxlOYuk4qwLywBRfdDiHPm7Gw=
