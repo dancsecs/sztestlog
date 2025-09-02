@@ -26,6 +26,40 @@ import (
 	"github.com/dancsecs/sztestlog"
 )
 
+func TestSzTestLog_ArgError(t *testing.T) {
+	chk := sztest.CaptureLog(t)
+	defer chk.Release()
+
+	szlog.Reset()
+
+	tstChk := sztestlog.CaptureLog(t, "--log")
+	defer tstChk.Release()
+
+	chk.NotNil(tstChk)
+
+	chk.Int(int(szlog.Level()), int(szlog.LevelError))
+
+	tstChk.Log()
+	chk.Log()
+}
+
+func TestSzTestLog_ArgErrorUnknown(t *testing.T) {
+	chk := sztest.CaptureLog(t)
+	defer chk.Release()
+
+	szlog.Reset()
+
+	tstChk := sztestlog.CaptureLog(t, "abc")
+	defer tstChk.Release()
+
+	chk.NotNil(tstChk)
+
+	chk.Int(int(szlog.Level()), int(szlog.LevelError))
+
+	tstChk.Log()
+	chk.Log()
+}
+
 func TestSzTestLog_CaptureNothing(t *testing.T) {
 	chk := sztest.CaptureNothing(t)
 	defer chk.Release()
@@ -37,7 +71,7 @@ func TestSzTestLog_CaptureNothing(t *testing.T) {
 		szlog.SetLevel(origLevel)
 	}()
 
-	tstChk := sztestlog.CaptureNothing(t, szlog.LevelAll)
+	tstChk := sztestlog.CaptureNothing(t)
 	defer tstChk.Release()
 
 	chk.NotNil(tstChk)
@@ -55,7 +89,7 @@ func TestSzTestLog_CaptureStdout(t *testing.T) {
 		szlog.SetLevel(origLevel)
 	}()
 
-	tstChk := sztestlog.CaptureStdout(t, szlog.LevelAll)
+	tstChk := sztestlog.CaptureStdout(t)
 	defer tstChk.Release()
 
 	chk.NotNil(tstChk)
@@ -75,7 +109,7 @@ func TestSzTestLog_CaptureLog(t *testing.T) {
 		szlog.SetLevel(origLevel)
 	}()
 
-	tstChk := sztestlog.CaptureLog(t, szlog.LevelAll)
+	tstChk := sztestlog.CaptureLog(t)
 	defer tstChk.Release()
 
 	chk.NotNil(tstChk)
@@ -95,7 +129,7 @@ func TestSzTestLog_CaptureLogAndStdout(t *testing.T) {
 		szlog.SetLevel(origLevel)
 	}()
 
-	tstChk := sztestlog.CaptureLogAndStdout(t, szlog.LevelAll)
+	tstChk := sztestlog.CaptureLogAndStdout(t)
 	defer tstChk.Release()
 
 	chk.NotNil(tstChk)
@@ -116,7 +150,7 @@ func TestSzTestLog_CaptureLogAndStderr(t *testing.T) {
 		szlog.SetLevel(origLevel)
 	}()
 
-	tstChk := sztestlog.CaptureLogAndStderr(t, szlog.LevelAll)
+	tstChk := sztestlog.CaptureLogAndStderr(t)
 	defer tstChk.Release()
 
 	chk.NotNil(tstChk)
@@ -137,7 +171,7 @@ func TestSzTestLog_CaptureLogAndStderrAndStdout(t *testing.T) {
 		szlog.SetLevel(origLevel)
 	}()
 
-	tstChk := sztestlog.CaptureLogAndStderrAndStdout(t, szlog.LevelAll)
+	tstChk := sztestlog.CaptureLogAndStderrAndStdout(t)
 	defer tstChk.Release()
 
 	chk.NotNil(tstChk)
@@ -159,7 +193,7 @@ func TestSzTestLog_CaptureLogWithStderr(t *testing.T) {
 		szlog.SetLevel(origLevel)
 	}()
 
-	tstChk := sztestlog.CaptureLogWithStderr(t, szlog.LevelAll)
+	tstChk := sztestlog.CaptureLogWithStderr(t)
 	defer tstChk.Release()
 
 	chk.NotNil(tstChk)
@@ -179,7 +213,7 @@ func TestSzTestLog_CaptureLogWithStderrAndStdout(t *testing.T) {
 		szlog.SetLevel(origLevel)
 	}()
 
-	tstChk := sztestlog.CaptureLogWithStderrAndStdout(t, szlog.LevelAll)
+	tstChk := sztestlog.CaptureLogWithStderrAndStdout(t)
 	defer tstChk.Release()
 
 	chk.NotNil(tstChk)
@@ -200,7 +234,7 @@ func TestSzTestLog_CaptureStderr(t *testing.T) {
 		szlog.SetLevel(origLevel)
 	}()
 
-	tstChk := sztestlog.CaptureStderr(t, szlog.LevelAll)
+	tstChk := sztestlog.CaptureStderr(t)
 	defer tstChk.Release()
 
 	chk.NotNil(tstChk)
@@ -220,34 +254,12 @@ func TestSzTestLog_CaptureStderrAndStdout(t *testing.T) {
 		szlog.SetLevel(origLevel)
 	}()
 
-	tstChk := sztestlog.CaptureStderrAndStdout(t, szlog.LevelAll)
+	tstChk := sztestlog.CaptureStderrAndStdout(t)
 	defer tstChk.Release()
 
 	chk.NotNil(tstChk)
 	chk.Int(int(szlog.Level()), int(szlog.LevelAll))
 
 	tstChk.Stdout()
-	tstChk.Stderr()
-}
-
-func TestSzTestLog_CaptureAll(t *testing.T) {
-	chk := sztest.CaptureNothing(t)
-	defer chk.Release()
-
-	szlog.Reset()
-
-	origLevel := szlog.SetLevel(szlog.LevelNone)
-	defer func() {
-		szlog.SetLevel(origLevel)
-	}()
-
-	tstChk := sztestlog.CaptureAll(t)
-	defer tstChk.Release()
-
-	chk.NotNil(tstChk)
-	chk.Int(int(szlog.Level()), int(szlog.LevelAll))
-
-	tstChk.Stdout()
-	tstChk.Log()
 	tstChk.Stderr()
 }

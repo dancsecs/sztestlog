@@ -1,7 +1,5 @@
-<!--- gotomd::Auto:: See github.com/dancsecs/gotomd **DO NOT MODIFY** -->
-
-<!---
-   Szerszam alarm manager: szalarm.
+/*
+   Szerszam logging library: szlog.
    Copyright (C) 2024  Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
@@ -16,15 +14,9 @@
 
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
--->
+*/
 
-# Package sztestlog
-
-<!--- gotomd::Bgn::doc::./package -->
-```go
-package sztestlog
-```
-
+/*
 Package sztestlog provides convenience functions to return a sztest.Chk object
 while setting the szlog package to the desired settings based on passed
 arguments for testing.  If no Arguments are passed then both verbose and log
@@ -39,4 +31,5 @@ life.
 
 NOTE: Documentation reviewed and polished with the assistance of ChatGPT from
 OpenAI.
-<!--- gotomd::End::doc::./package -->
+*/
+package sztestlog
