@@ -1,6 +1,6 @@
 /*
    Szerszam logging library: szlog.
-   Copyright (C) 2024  Leslie Dancsecs
+   Copyright (C) 2024-2025  Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -59,12 +59,13 @@ func setLevels(t *testing.T, args []string) func() error {
 	}
 }
 
-// CaptureNothing returns a new *sztest.Chk reference and setting the logging
-// level in a single call.
-func CaptureNothing(t *testing.T, args ...string) *sztest.Chk {
+// CaptureNothing returns a new *sztest.Chk reference while setting the szlog
+// logging level in a single call.  If no szlogArgs are provided then szlog
+// defaults to szlog.LevelAll and maximum verbosity.
+func CaptureNothing(t *testing.T, szlogArgs ...string) *sztest.Chk {
 	t.Helper()
 
-	restoreFunc := setLevels(t, args)
+	restoreFunc := setLevels(t, szlogArgs)
 
 	chk := sztest.CaptureNothing(t)
 	chk.PushPostReleaseFunc(restoreFunc)
@@ -72,12 +73,13 @@ func CaptureNothing(t *testing.T, args ...string) *sztest.Chk {
 	return chk
 }
 
-// CaptureStdout returns a new *sztest.Chk reference and setting the logging
-// level in a single call.
-func CaptureStdout(t *testing.T, args ...string) *sztest.Chk {
+// CaptureStdout returns a new *sztest.Chk reference while setting the szlog
+// logging level in a single call.  If no szlogArgs are provided then szlog
+// defaults to szlog.LevelAll and maximum verbosity.
+func CaptureStdout(t *testing.T, szlogArgs ...string) *sztest.Chk {
 	t.Helper()
 
-	restoreFunc := setLevels(t, args)
+	restoreFunc := setLevels(t, szlogArgs)
 
 	chk := sztest.CaptureStdout(t)
 	chk.PushPostReleaseFunc(restoreFunc)
@@ -85,12 +87,13 @@ func CaptureStdout(t *testing.T, args ...string) *sztest.Chk {
 	return chk
 }
 
-// CaptureLog returns a new *sztest.Chk reference and setting the logging
-// level in a single call.
-func CaptureLog(t *testing.T, args ...string) *sztest.Chk {
+// CaptureLog returns a new *sztest.Chk reference while setting the szlog
+// logging level in a single call.  If no szlogArgs are provided then szlog
+// defaults to szlog.LevelAll and maximum verbosity.
+func CaptureLog(t *testing.T, szlogArgs ...string) *sztest.Chk {
 	t.Helper()
 
-	restoreFunc := setLevels(t, args)
+	restoreFunc := setLevels(t, szlogArgs)
 
 	chk := sztest.CaptureLog(t)
 	chk.PushPostReleaseFunc(restoreFunc)
@@ -98,12 +101,13 @@ func CaptureLog(t *testing.T, args ...string) *sztest.Chk {
 	return chk
 }
 
-// CaptureLogAndStdout returns a new *sztest.Chk reference and setting the
-// logging level in a single call.
-func CaptureLogAndStdout(t *testing.T, args ...string) *sztest.Chk {
+// CaptureLogAndStdout returns a new *sztest.Chk reference while setting the
+// szlog logging level in a single call.  If no szlogArgs are provided then
+// szlog defaults to szlog.LevelAll and maximum verbosity.
+func CaptureLogAndStdout(t *testing.T, szlogArgs ...string) *sztest.Chk {
 	t.Helper()
 
-	restoreFunc := setLevels(t, args)
+	restoreFunc := setLevels(t, szlogArgs)
 
 	chk := sztest.CaptureLogAndStdout(t)
 	chk.PushPostReleaseFunc(restoreFunc)
@@ -111,12 +115,13 @@ func CaptureLogAndStdout(t *testing.T, args ...string) *sztest.Chk {
 	return chk
 }
 
-// CaptureLogAndStderr returns a new *sztest.Chk reference and setting the
-// logging level in a single call.
-func CaptureLogAndStderr(t *testing.T, args ...string) *sztest.Chk {
+// CaptureLogAndStderr returns a new *sztest.Chk reference while setting the
+// szlog logging level in a single call.  If no szlogArgs are provided then
+// szlog defaults to szlog.LevelAll and maximum verbosity.
+func CaptureLogAndStderr(t *testing.T, szlogArgs ...string) *sztest.Chk {
 	t.Helper()
 
-	restoreFunc := setLevels(t, args)
+	restoreFunc := setLevels(t, szlogArgs)
 
 	chk := sztest.CaptureLogAndStderr(t)
 	chk.PushPostReleaseFunc(restoreFunc)
@@ -124,14 +129,15 @@ func CaptureLogAndStderr(t *testing.T, args ...string) *sztest.Chk {
 	return chk
 }
 
-// CaptureLogAndStderrAndStdout returns a new *sztest.Chk reference and
-// setting the logging level in a single call.
+// CaptureLogAndStderrAndStdout returns a new *sztest.Chk reference while
+// setting the szlog logging level in a single call.  If no szlogArgs are
+// provided then szlog defaults to szlog.LevelAll and maximum verbosity.
 func CaptureLogAndStderrAndStdout(
-	t *testing.T, args ...string,
+	t *testing.T, szlogArgs ...string,
 ) *sztest.Chk {
 	t.Helper()
 
-	restoreFunc := setLevels(t, args)
+	restoreFunc := setLevels(t, szlogArgs)
 
 	chk := sztest.CaptureLogAndStderrAndStdout(t)
 	chk.PushPostReleaseFunc(restoreFunc)
@@ -139,12 +145,13 @@ func CaptureLogAndStderrAndStdout(
 	return chk
 }
 
-// CaptureLogWithStderr returns a new *sztest.Chk reference and setting
-// the logging level in a single call.
-func CaptureLogWithStderr(t *testing.T, args ...string) *sztest.Chk {
+// CaptureLogWithStderr returns a new *sztest.Chk reference while setting the
+// szlog logging level in a single call.  If no szlogArgs are provided then
+// szlog defaults to szlog.LevelAll and maximum verbosity.
+func CaptureLogWithStderr(t *testing.T, szlogArgs ...string) *sztest.Chk {
 	t.Helper()
 
-	restoreFunc := setLevels(t, args)
+	restoreFunc := setLevels(t, szlogArgs)
 
 	chk := sztest.CaptureLogWithStderr(t)
 	chk.PushPostReleaseFunc(restoreFunc)
@@ -152,14 +159,15 @@ func CaptureLogWithStderr(t *testing.T, args ...string) *sztest.Chk {
 	return chk
 }
 
-// CaptureLogWithStderrAndStdout returns a new *sztest.Chk reference and
-// setting the logging level in a single call.
+// CaptureLogWithStderrAndStdout returns a new *sztest.Chk reference while
+// setting the szlog logging level in a single call.  If no szlogArgs are
+// provided then szlog defaults to szlog.LevelAll and maximum verbosity.
 func CaptureLogWithStderrAndStdout(
-	t *testing.T, args ...string,
+	t *testing.T, szlogArgs ...string,
 ) *sztest.Chk {
 	t.Helper()
 
-	restoreFunc := setLevels(t, args)
+	restoreFunc := setLevels(t, szlogArgs)
 
 	chk := sztest.CaptureLogWithStderrAndStdout(t)
 	chk.PushPostReleaseFunc(restoreFunc)
@@ -167,12 +175,13 @@ func CaptureLogWithStderrAndStdout(
 	return chk
 }
 
-// CaptureStderr returns a new *sztest.Chk reference and setting the logging
-// level in a single call.
-func CaptureStderr(t *testing.T, args ...string) *sztest.Chk {
+// CaptureStderr returns a new *sztest.Chk reference while setting the szlog
+// logging level in a single call.  If no szlogArgs are provided then szlog
+// defaults to szlog.LevelAll and maximum verbosity.
+func CaptureStderr(t *testing.T, szlogArgs ...string) *sztest.Chk {
 	t.Helper()
 
-	restoreFunc := setLevels(t, args)
+	restoreFunc := setLevels(t, szlogArgs)
 
 	chk := sztest.CaptureStderr(t)
 	chk.PushPostReleaseFunc(restoreFunc)
@@ -180,12 +189,13 @@ func CaptureStderr(t *testing.T, args ...string) *sztest.Chk {
 	return chk
 }
 
-// CaptureStderrAndStdout returns a new *sztest.Chk reference and setting
-// the logging level in a single call.
-func CaptureStderrAndStdout(t *testing.T, args ...string) *sztest.Chk {
+// CaptureStderrAndStdout returns a new *sztest.Chk reference while setting
+// the szlog logging level in a single call.  If no szlogArgs are provided
+// then szlog defaults to szlog.LevelAll and maximum verbosity.
+func CaptureStderrAndStdout(t *testing.T, szlogArgs ...string) *sztest.Chk {
 	t.Helper()
 
-	restoreFunc := setLevels(t, args)
+	restoreFunc := setLevels(t, szlogArgs)
 
 	chk := sztest.CaptureStderrAndStdout(t)
 	chk.PushPostReleaseFunc(restoreFunc)
