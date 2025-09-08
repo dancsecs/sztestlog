@@ -41,7 +41,7 @@ func setLevels(t *testing.T, args []string) func() error {
 		}
 	}
 
-	remainingArgs, err := szlog.AbsorbArgs(args)
+	remainingArgs, err := szlog.AbsorbArgs(args, nil)
 
 	if err != nil {
 		t.Log("Setting args caused: ", err)
