@@ -19,6 +19,7 @@
 package sztestlog
 
 import (
+	"os"
 	"testing"
 
 	"github.com/dancsecs/szlog"
@@ -27,6 +28,8 @@ import (
 
 func setLevels(t *testing.T, args []string) func() error {
 	t.Helper()
+
+	szlog.SetStdout(os.Stdout)
 
 	origLevel := szlog.Level()
 	origVerbose := szlog.Verbose()
