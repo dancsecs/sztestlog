@@ -29,8 +29,6 @@ import (
 func setLevels(t *testing.T, args []string) func() error {
 	t.Helper()
 
-	szlog.SetStdout(os.Stdout)
-
 	origLevel := szlog.Level()
 	origVerbose := szlog.Verbose()
 	origLongLabels := szlog.LongLabels()
@@ -87,6 +85,8 @@ func CaptureStdout(t *testing.T, szlogArgs ...string) *sztest.Chk {
 	chk := sztest.CaptureStdout(t)
 	chk.PushPostReleaseFunc(restoreFunc)
 
+	szlog.SetStdout(os.Stdout) // Update log to captured test log.
+
 	return chk
 }
 
@@ -114,6 +114,8 @@ func CaptureLogAndStdout(t *testing.T, szlogArgs ...string) *sztest.Chk {
 
 	chk := sztest.CaptureLogAndStdout(t)
 	chk.PushPostReleaseFunc(restoreFunc)
+
+	szlog.SetStdout(os.Stdout) // Update log to captured test log.
 
 	return chk
 }
@@ -145,6 +147,8 @@ func CaptureLogAndStderrAndStdout(
 	chk := sztest.CaptureLogAndStderrAndStdout(t)
 	chk.PushPostReleaseFunc(restoreFunc)
 
+	szlog.SetStdout(os.Stdout) // Update log to captured test log.
+
 	return chk
 }
 
@@ -173,7 +177,10 @@ func CaptureLogWithStderrAndStdout(
 	restoreFunc := setLevels(t, szlogArgs)
 
 	chk := sztest.CaptureLogWithStderrAndStdout(t)
+
 	chk.PushPostReleaseFunc(restoreFunc)
+
+	szlog.SetStdout(os.Stdout) // Update log to captured test log.
 
 	return chk
 }
@@ -202,6 +209,8 @@ func CaptureStderrAndStdout(t *testing.T, szlogArgs ...string) *sztest.Chk {
 
 	chk := sztest.CaptureStderrAndStdout(t)
 	chk.PushPostReleaseFunc(restoreFunc)
+
+	szlog.SetStdout(os.Stdout) // Update log to captured test log.
 
 	return chk
 }
