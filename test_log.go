@@ -31,7 +31,6 @@ func setLevels(t *testing.T, args []string) func() error {
 	origLevel := szlog.Level()
 	origVerbose := szlog.Verbose()
 	origLongLabels := szlog.LongLabels()
-	origLanguage := szlog.Language()
 
 	if len(args) == 0 {
 		args = []string{
@@ -53,7 +52,6 @@ func setLevels(t *testing.T, args []string) func() error {
 		szlog.SetLevel(origLevel)
 		szlog.SetVerbose(origVerbose)
 		szlog.SetLongLabels(origLongLabels)
-		_ = szlog.SetLanguage(origLanguage)
 
 		return nil
 	}

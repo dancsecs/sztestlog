@@ -1,4 +1,6 @@
-<!--- gotomd::Auto:: See github.com/dancsecs/gotomd **DO NOT MODIFY** -->
+<!---             *****  AUTO GENERATED:  DO NOT MODIFY  ***** -->
+<!---                   MODIFY TEMPLATE: '.README.gtm.md' -->
+<!---               See: 'https://github.com/dancsecs/gotomd' -->
 
 <!---
    Szerszam alarm manager: szalarm.
@@ -20,7 +22,6 @@
 
 # Package sztestlog
 
-<!--- gotomd::Bgn::doc::./package -->
 ```go
 package sztestlog
 ```
@@ -39,4 +40,3 @@ life.
 
 NOTE: Documentation reviewed and polished with the assistance of ChatGPT from
 OpenAI.
-<!--- gotomd::End::doc::./package -->
